@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -30,6 +31,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.carlosjimz87.instagramclone.R
@@ -107,12 +109,16 @@ fun HomeScreen() {
             }
         }
     ) {
-        LazyColumn() {
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = 70.dp)
+        ) {
             item {
                 LazyRow() {
                     items(Dummy.storyList) { item ->
                         Column(
-                            modifier = Modifier.padding(10.dp, 70.dp),
+                            modifier = Modifier.padding(10.dp),
                             horizontalAlignment = Alignment.CenterHorizontally,
                             verticalArrangement = Arrangement.Center
                         ) {
@@ -132,6 +138,87 @@ fun HomeScreen() {
                                 style = TextStyle(color = Color.Black)
                             )
                         }
+                    }
+                }
+            }
+
+            items(Dummy.postList) { item ->
+                Column(Modifier.padding(0.dp, 10.dp)) {
+                    Row(
+                        Modifier
+                            .padding(10.dp, 0.dp)
+                            .fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Row(
+                            horizontalArrangement = Arrangement.Center,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Image(
+                                modifier = Modifier
+                                    .size(45.dp)
+                                    .clip(CircleShape)
+                                    .border(1.dp, Color.Red),
+                                painter = painterResource(id = item.profile),
+                                contentDescription = null
+                            )
+                            Spacer(modifier = Modifier.width(10.dp))
+                            Text(
+                                text = item.name,
+                                style = TextStyle(fontWeight = FontWeight.Medium)
+                            )
+                        }
+                        Image(
+                            modifier = Modifier.width(20.dp),
+                            contentScale = ContentScale.FillWidth,
+                            painter = painterResource(id = R.drawable.menu),
+                            contentDescription = null
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(6.dp))
+                    Image(
+                        modifier = Modifier.height(300.dp),
+                        contentScale = ContentScale.FillWidth,
+                        painter = painterResource(id = item.image), contentDescription = null
+                    )
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(10.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Row {
+                            Image(
+                                modifier = Modifier.width(25.dp),
+                                contentScale = ContentScale.FillWidth,
+                                painter = painterResource(id = R.drawable.like),
+                                contentDescription = null
+                            )
+                            Spacer(modifier = Modifier.height(5.dp))
+                            Image(
+                                modifier = Modifier.width(25.dp),
+                                contentScale = ContentScale.FillWidth,
+                                painter = painterResource(id = R.drawable.comment),
+                                contentDescription = null
+                            )
+                            Spacer(modifier = Modifier.height(5.dp))
+                            Image(
+                                modifier = Modifier.width(25.dp),
+                                contentScale = ContentScale.FillWidth,
+                                painter = painterResource(id = R.drawable.share),
+                                contentDescription = null
+                            )
+
+                        }
+                        Image(
+                            modifier = Modifier.width(25.dp),
+                            contentScale = ContentScale.FillWidth,
+                            painter = painterResource(id = R.drawable.save),
+                            contentDescription = null
+                        )
                     }
                 }
             }
