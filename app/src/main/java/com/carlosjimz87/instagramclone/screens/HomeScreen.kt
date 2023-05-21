@@ -220,6 +220,14 @@ fun HomeScreen() {
                             contentDescription = null
                         )
                     }
+                    Column(Modifier.padding(10.dp, 0.dp)) {
+                        Text(
+                            "100 Likes", style = TextStyle(fontWeight = FontWeight.Bold)
+                        )
+                        Text("In publishing and graphic design, relying on meaningful content .... more")
+
+                    }
+
                 }
             }
         }
